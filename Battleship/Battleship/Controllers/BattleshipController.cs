@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Battleship.Dtos;
+using Battleship.Entities;
 using Battleship.Services;
 
 namespace Battleship.Controllers
@@ -18,22 +20,16 @@ namespace Battleship.Controllers
 			_battleshipService = battleshipService;
 		}
 		
-		[HttpPost("createboard")]
-		public void CreateBoard()
+		[HttpPost("setupboard")]
+		public void SetupBoard()
 		{
-			_battleshipService.CreateBoard();
-		}
-
-		[HttpPost("addshiptoboard")]
-		public void AddShipToBoard()
-		{
-			_battleshipService.AddShipToBaord();
+			_battleshipService.SetupBoard();
 		}
 
 		[HttpPost("attack")]
-		public void Attack()
+		public async Task<AttackResponseDto> Attack([FromForm]Point atPoint)
 		{
-			_battleshipService.Attack();
+			return await _battleshipService.Attack(atPoint);
 		}
 	}
 }

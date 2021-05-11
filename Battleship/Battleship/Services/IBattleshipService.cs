@@ -1,9 +1,13 @@
-﻿namespace Battleship.Services
+﻿using System.Threading.Tasks;
+using Battleship.Dtos;
+using Battleship.Entities;
+
+namespace Battleship.Services
 {
     public interface IBattleshipService
     {
-        void CreateBoard();
-        void AddShipToBaord();
-        void Attack();
+        void SetupBoard();
+      
+        Task<AttackResponseDto> Attack(Point point);
     }
 }
