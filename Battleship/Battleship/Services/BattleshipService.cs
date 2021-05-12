@@ -27,17 +27,18 @@ namespace Battleship.Services
 			_board.PlaceShips(ships);
 		}
 
-		public async Task<AttackResponseDto> Attack(Point atPoint)
+		public async Task<AttackResponseDto> Attack(int row, int column)
 		{
 			if (_board == null)
 			{
 				throw new Exception("Board must be setup before attacking");
 			}
-			var attachResult = _board.TakeAnAttack(atPoint.Row, atPoint.Column);
+			var attachResult = _board.TakeAnAttack(row, column);
 			return new AttackResponseDto()
 			{
 				Result = attachResult,
-				AtPoint = atPoint
+				Row = row,
+				Column = column
 			};
 		}
 	}

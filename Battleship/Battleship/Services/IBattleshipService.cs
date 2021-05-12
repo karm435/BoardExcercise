@@ -8,6 +8,6 @@ namespace Battleship.Services
     {
         void SetupBoard();
       
-        Task<AttackResponseDto> Attack(Point point);
+        Task<AttackResponseDto> Attack(int row, int column);
     }
 }

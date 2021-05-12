@@ -27,9 +27,9 @@ namespace Battleship.Controllers
 		}
 
 		[HttpPost("attack")]
-		public async Task<AttackResponseDto> Attack([FromForm]Point atPoint)
+		public async Task<AttackResponseDto> Attack([FromForm]AttackPointDto atPoint)
 		{
-			return await _battleshipService.Attack(atPoint);
+			return await _battleshipService.Attack(atPoint.Row, atPoint.Column);
 		}
 	}
 }

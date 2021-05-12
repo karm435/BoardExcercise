@@ -33,7 +33,7 @@ namespace Battleship
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplication1", Version = "v1" });
 			});
 
-			services.AddScoped<IBattleshipService, BattleshipService>();
+			services.AddSingleton<IBattleshipService, BattleshipService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
