@@ -4,7 +4,7 @@ namespace Battleship.Dtos
 {
     public class AttackResponseDto
     {
-        public bool isHit { get; set; }
+        public AttackResult Result { get; set; }
 
         public Point AtPoint { get; set; }
     }
