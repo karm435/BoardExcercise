@@ -30,10 +30,11 @@ namespace Battleship
 			services.AddControllers();
 			services.AddSwaggerGen(c =>
 			{
-				c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplication1", Version = "v1" });
+				c.SwaggerDoc("v1", new OpenApiInfo { Title = "battleship", Version = "v1" });
 			});
 
 			services.AddSingleton<IBattleshipService, BattleshipService>();
+			services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,15 +43,19 @@ namespace Battleship
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
-				app.UseSwagger();
-				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication1 v1"));
 			}
+
+			app.UseSwagger();
+			app.UseSwaggerUI(c =>
+			{
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "battleship v1");
+			});
+
+			app.UseDefaultFiles();
 
 			app.UseHttpsRedirection();
 
 			app.UseRouting();
-
-			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
 			{
